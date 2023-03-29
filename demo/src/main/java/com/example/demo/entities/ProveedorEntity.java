@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Table(name = "proveedores")
@@ -16,7 +19,8 @@ public class ProveedorEntity {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     //@Column(unique = true, nullable = false)
     @Id
-    private String id_proveedores;
+    @NotNull
+    private String codigo;
 
     private String afecto_retencion;
     private String categoria;

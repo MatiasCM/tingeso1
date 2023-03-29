@@ -13,7 +13,17 @@ public class ProveedorService {
     @Autowired
     ProveedorRepository proveedorRepository;
 
+    public void guardarProveedor(String codigo, String afecto_retencion, String categoria, String nombre_proveedor){
+        ProveedorEntity proveedor = new ProveedorEntity();
+        proveedor.setCodigo(codigo);
+        proveedor.setAfecto_retencion(afecto_retencion);
+        proveedor.setCategoria(categoria);
+        proveedor.setNombre_proveedor(nombre_proveedor);
+        proveedorRepository.save(proveedor);
+    }
+
     public ArrayList<ProveedorEntity> obtenerProveedores(){
         return (ArrayList<ProveedorEntity>) proveedorRepository.findAll();
     }
+
 }

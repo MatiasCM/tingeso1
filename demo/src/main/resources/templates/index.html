@@ -48,14 +48,14 @@
   <nav>
   </nav>
   <a class="btn" href="/"><button>Volver al menú principal</button></a>
-  <a class="btn-2" href="/nuevo-proveedor"><button>Ingresar nuevo Proveedor</button></a>
+  <a class="btn-2" href="/nuevo_proveedor"><button>Ingresar nuevo Proveedor</button></a>
 </header>
 <div th:align = "center" class = "container my-2">
   <h1><b> Listado de proveedores</b></h1>
   <table  th:border = "3" class="table table-primary table-striped table-bordered border-secondary">
     <thead class="table-dark">
     <tr>
-      <th>ID</th>
+      <th>Codigo</th>
       <th>Nombre</th>
       <th>Categoria</th>
       <th>Retencion</th>
@@ -63,7 +63,7 @@
     </thead>
     <tbody>
     <tr th:each="proveedores:${proveedores}">
-      <td th:text="${proveedores.id_proveedores}"></td>
+      <td th:text="${proveedores.codigo}"></td>
       <td th:text="${proveedores.nombre_proveedor}"></td>
       <td th:text="${proveedores.categoria}"></td>
       <td th:text="${proveedores.afecto_retencion}"></td>
