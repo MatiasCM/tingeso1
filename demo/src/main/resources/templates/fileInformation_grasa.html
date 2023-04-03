@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Grasa y Solidos</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel = "stylesheet" href= "../static/css/navbar.css" type="text/css" th:href="@{/index.css}">
+    <style>
+        .header .btn-2 button {
+            margin-left: 20px;
+            font-weight: 700;
+            color: #1b3039;
+            padding: 9px 25px;
+            background: #eceff1;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+        }
+        .header .btn-2 button:hover{
+            background-color: #e2f1f8;
+            color: #0e36ff;
+            transform: matrix(1.1);
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <h1>MilkStgo</h1>
+    </div>
+    <nav>
+    </nav>
+    <a class="btn" href="/"><button>Volver al menú principal</button></a>
+    <a class="btn-2" href="/fileUpload_grasa"><button>Cargar un nuevo archivo</button></a>
+</header>
+<div th:align = "center" class = "container my-2">
+    <h1><b> Listado de Grasa y Solidos</b></h1>
+    <table  th:border = "3" class="table table-primary table-striped table-bordered border-secondary">
+        <thead class="table-dark">
+        <tr>
+            <th>Proveedor</th>
+            <th>Grasa</th>
+            <th>Solido</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="grasaSolidos:${grasaSolidos}">
+            <td th:text="${grasaSolidos.proveedor}"></td>
+            <td th:text="${grasaSolidos.grasa}"></td>
+            <td th:text="${grasaSolidos.solido}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
