@@ -17,7 +17,7 @@ header{
 .header .btn button{
     margin-left: 20px;
     font-weight: 700;
-    color: #9d41ff;
+    color: #1b3039;
     padding: 9px 25px;
     background: #eceff1;
     border: none;
@@ -28,8 +28,4 @@ header{
     background-color: #e2f1f8;
     color: #0e36ff;
     transform: matrix(1.1);
-}
-#header {
-    background-color: indigo;
-    color: indigo;
 }
