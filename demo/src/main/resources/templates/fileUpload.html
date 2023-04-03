@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subir archivo</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel = "stylesheet" href= "../static/css/navbar.css" type="text/css" th:href="@{/navbar.css}">
+  <style>
+      .container{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+      .header .btn-2 button {
+          margin-left: 20px;
+          font-weight: 700;
+          color: #1b3039;
+          padding: 9px 25px;
+          background: #eceff1;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease 0s;
+      }
+      .header .btn-2 button:hover{
+          background-color: #e2f1f8;
+          color: #0e36ff;
+          transform: matrix(1.1);
+      }
+      .btn-3 button{
+          margin-left: 0px;
+          font-weight: 700;
+          background-color: #4591e7;
+          color: black;
+          padding: 10px 0;
+          border: none;
+          cursor: pointer;
+          width: 100%;
+      }
+      .btn-3 button:hover {
+          opacity: 0.8;
+      }
+  </style>
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <h1>MilkStgo</h1>
+    </div>
+    <nav>
+    </nav>
+    <a class="btn" href="/"><button>Volver al menú principal</button></a>
+    <a class="btn-2" href="/fileInformation"><button>Ver el último archivo cargado</button></a>
+</header>
+<div class = "container" align = "center">
+    <h1><b>Subir archivo</b></h1>
+    <form  th:action="@{/fileUpload}" method="POST" enctype="multipart/form-data">
+        <br>
+        <input align = "center" type="file" class="form-control" name="file" accept = ".csv">
+        <br>
+        <!--<input class = "btn-3"
+               type="submit" value="Cargar el archivo">-->
+        <a class="btn-3" align = "center"><button type="submit">Cargar el archivo</button></a>
+
+    </form>
+    <br>
+    <u><b> <h2 th:text="${mensaje}"></h2></b></u>
+</div>
+
+</body>
+</html>
