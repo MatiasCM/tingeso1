@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>MilkStgo main</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -55,9 +55,11 @@
             color: #0e36ff;
             transform: matrix(1.1);
         }
+        img{
+            height: 20%;
+        }
     </style>
 </head>
-<body>
 <header class="header">
     <div class="logo">
         <h1 align = center style="color: white"> <b1>MilkStgo</b1></h1>
@@ -68,6 +70,12 @@
     <a class="btn" href="/listar"><button>Ver proveedores</button></a>
     <a class="btn-2" href="/fileUpload"><button>Cargar archivo de Acopio Leche</button></a>
     <a class="btn-3" href="/fileUpload_grasa"><button>Cargar archivo de Grasa y Solidos</button></a>
+</div>
+<div class="container-fluid" th:align="center">
+<a th:align="center" class="ui-icon-image" href="#" aria-expanded="true">
+    <img th:src="@{/public/leche.png}" id="imagen" class="img-circle"/>
+    <b class="caret"></b>
+</a>
 </div>
 </body>
 </html>
