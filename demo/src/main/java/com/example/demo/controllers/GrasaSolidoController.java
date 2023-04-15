@@ -5,12 +5,11 @@ import com.example.demo.entities.GrasaSolidoEntity;
 import com.example.demo.services.AcopioLecheService;
 import com.example.demo.services.GrasaSolidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -41,4 +40,15 @@ public class GrasaSolidoController {
         model.addAttribute("grasaSolidos", grasaSolidos);
         return "fileInformation_grasa";
     }
+
+    @GetMapping("/gs/{proveedor}")
+    public ResponseEntity<GrasaSolidoEntity> obtenerGSPorProveedor(@PathVariable String proveedor) {
+        GrasaSolidoEntity gs = grasaSolido.obtenerGSPorProveedor(proveedor);
+        if(gs == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(gs, HttpStatus.OK);
+    }
+
+
 }

@@ -17,7 +17,7 @@ public class AcopioLecheEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_acopio;
     private String fecha;
-    private String kls_leche;
+    private Integer kls_leche;
     private String proveedor;
     private String turno;
 }

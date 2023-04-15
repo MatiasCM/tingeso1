@@ -63,7 +63,7 @@ public class AcopioLecheService {
                     count = 0;
                 }
                 else{
-                    guardarDataDB(bfRead.split(";")[0], bfRead.split(";")[1], bfRead.split(";")[2], bfRead.split(";")[3]);
+                    guardarDataDB(bfRead.split(";")[0], bfRead.split(";")[1], bfRead.split(";")[2], Integer.parseInt(bfRead.split(";")[3]));
                     temp = temp + "\n" + bfRead;
                 }
             }
@@ -86,7 +86,7 @@ public class AcopioLecheService {
         acopioLecheRepository.save(acopioLeche);
     }
 
-    public void guardarDataDB(String fecha, String turno, String proveedor, String kls_leche){
+    public void guardarDataDB(String fecha, String turno, String proveedor, Integer kls_leche){
         AcopioLecheEntity newData = new AcopioLecheEntity();
         newData.setFecha(fecha);
         newData.setTurno(turno);
@@ -94,6 +94,52 @@ public class AcopioLecheService {
         newData.setKls_leche(kls_leche);
         guardarData(newData);
     }
+
+    public ArrayList<AcopioLecheEntity> obtenerPorProveedor(String proveedor){
+        return acopioLecheRepository.findByProveedor(proveedor);
+    }
+
+    //sumar kls de leche
+    public double sumarKls(String proveedor){
+        ArrayList<AcopioLecheEntity> acopios = obtenerPorProveedor(proveedor);
+        double suma = 0.0;
+        for(AcopioLecheEntity acopio:acopios){
+            suma = suma + acopio.getKls_leche();
+        }
+        return suma;
+    }
+
+    public double klsPorCategoria(String categoria, double kilos){
+        if(categoria.equals("A")){
+            return kilos * 700;
+        }else if(categoria.equals("B")){
+            return kilos * 550;
+        }else if(categoria.equals("C")){
+            return kilos * 400;
+        }else{
+            return kilos * 250;
+        }
+    }
+
+    //calcular cantidad de acopios con un turno por porveedor
+    public int cantidadAcopiosPorTurno(String proveedor, String turno){
+        int cantidad = acopioLecheRepository.countByProveedorAndTurno(proveedor, turno);
+        return cantidad;
+    }
+
+    public double bonoFrecuencia(String proveedor, double kilos) {
+        int mañana = cantidadAcopiosPorTurno(proveedor, "M");
+        int tarde = cantidadAcopiosPorTurno(proveedor, "T");
+        if (mañana >= 10 && tarde >= 10) {
+            return kilos * 0.2;
+        } else if (mañana >= 10 && tarde < 10) {
+            return kilos * 0.12;
+        } else if (mañana < 10 && tarde >= 10) {
+            return kilos * 0.08;
+        }
+        return kilos * 0;
+    }
+
 
 
 }
