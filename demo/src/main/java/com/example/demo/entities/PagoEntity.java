@@ -13,29 +13,29 @@ import org.jetbrains.annotations.NotNull;
 @Data
 public class PagoEntity {
     @Id
-    @NotNull
+    //@NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_pago;
 
     private String quincena;
     private String codigo_proveedor;
     private String nombre_proveedor;
-    private Integer total_kls;
-    private Integer dias;
-    private Integer promedio_kls;
-    private Integer variacion_leche;
-    private Integer grasa;
-    private Integer variacion_grasa;
-    private Integer solidos_totales;
-    private Integer variacion_st;
-    private Integer pago_leche;
-    private Integer pago_grasa;
-    private Integer pago_st;
-    private Integer bono;
-    private Integer dcto_leche;
-    private Integer dcto_grasa;
-    private Integer dcto_st;
-    private Integer total;
-    private Integer monto_retencion;
-    private Integer monto_final;
+    private double total_kls;
+    private double dias;
+    private double promedio_kls;
+    private double variacion_leche;
+    private double grasa;
+    private double variacion_grasa;
+    private double solidos_totales;
+    private double variacion_st;
+    private double pago_leche;
+    private double pago_grasa;
+    private double pago_st;
+    private double bono;
+    private double dcto_leche;
+    private double dcto_grasa;
+    private double dcto_st;
+    private double total;
+    private double monto_retencion;
+    private double monto_final;
 }

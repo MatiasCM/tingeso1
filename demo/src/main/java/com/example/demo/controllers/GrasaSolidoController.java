@@ -28,9 +28,11 @@ public class GrasaSolidoController {
 
     @PostMapping("/fileUpload_grasa")
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        grasaSolido.eliminarGS();
         grasaSolido.guardarGS(file);
+        String filename = file.getOriginalFilename();
         redirectAttributes.addFlashAttribute("mensaje", "Archivo cargado con éxito");
-        grasaSolido.leerCsv("Grasa.csv");
+        grasaSolido.leerCsv(filename);
         return "redirect:/fileUpload_grasa";
     }
 
@@ -41,14 +43,14 @@ public class GrasaSolidoController {
         return "fileInformation_grasa";
     }
 
-    @GetMapping("/gs/{proveedor}")
+    /* @GetMapping("/gs/{proveedor}")
     public ResponseEntity<GrasaSolidoEntity> obtenerGSPorProveedor(@PathVariable String proveedor) {
         GrasaSolidoEntity gs = grasaSolido.obtenerGSPorProveedor(proveedor);
         if(gs == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(gs, HttpStatus.OK);
-    }
+    } */
 
 
 }

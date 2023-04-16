@@ -94,6 +94,11 @@ public class GrasaSolidoService {
         guardarData(newData);
     }
 
+    //eliminar todos los datos
+    public void eliminarGS(){
+        grasaSolidoRepository.deleteAll();
+    }
+
     public GrasaSolidoEntity obtenerGSPorProveedor(String proveedor){
         return grasaSolidoRepository.findGSByProveedor(proveedor);
     }

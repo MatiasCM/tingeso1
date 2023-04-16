@@ -28,9 +28,11 @@ public class AcopioLecheController {
 
     @PostMapping("/fileUpload")
     public String upload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
+        acopioLeche.eliminarAcopios();
         acopioLeche.guardarAcopio(file);
+        String filename = file.getOriginalFilename();
         redirectAttributes.addFlashAttribute("mensaje", "Archivo cargado con éxito");
-        acopioLeche.leerCsv("Acopio.csv");
+        acopioLeche.leerCsv(filename);
         return "redirect:/fileUpload";
     }
 
@@ -41,27 +43,27 @@ public class AcopioLecheController {
         return "fileInformation";
     }
 
-    @GetMapping("/acopio/{proveedor}")
+    /* @GetMapping("/acopio/{proveedor}")
     public ResponseEntity<List<AcopioLecheEntity>> obtenerAcopiosPorProveedor(@PathVariable String proveedor) {
         List<AcopioLecheEntity> acopios = acopioLeche.obtenerPorProveedor(proveedor);
         if(acopios.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(acopios, HttpStatus.OK);
-    }
+    } */
 
     //retornar la suma de kls de leche
-    @GetMapping("/acopio/sumarKls/{proveedor}")
+    /* @GetMapping("/acopio/sumarKls/{proveedor}")
     public ResponseEntity<Double> sumarKls(@PathVariable String proveedor) {
         double kls = acopioLeche.sumarKls(proveedor);
         if(kls == 0) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(kls, HttpStatus.OK);
-    }
+    } */
 
     //retornar kls de leche de proveedor por categoria
-    @GetMapping("/acopio/sumarKlsPorCategoria/{proveedor}/{categoria}")
+    /* @GetMapping("/acopio/sumarKlsPorCategoria/{proveedor}/{categoria}")
     public ResponseEntity<Double> sumarKlsPorCategoria(@PathVariable String proveedor, @PathVariable String categoria) {
         double kls_leche = acopioLeche.sumarKls(proveedor);
         double kls = acopioLeche.klsPorCategoria(categoria, kls_leche);
@@ -69,7 +71,7 @@ public class AcopioLecheController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(kls, HttpStatus.OK);
-    }
+    } */
 
 
 }
