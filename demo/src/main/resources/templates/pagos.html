@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html lang = "es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Pagos</title>
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+  <link rel = "stylesheet" href= "../static/navbar.css" type="text/css" th:href="@{/index.css}">
+
+  <style>
+    
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="logo">
+    <h1>MilkStgo</h1>
+  </div>
+  <nav>
+  </nav>
+  <a class="btn" href="/"><button>Volver al menú principal</button></a>
+</header>
+<div th:align = "center" class = "container my-2">
+  <h1><b> Listado de pagos</b></h1>
+  <table  th:border = "3" class="table table-primary table-striped table-bordered border-secondary">
+    <thead class="table-dark">
+    <tr>
+      <th>Quincena</th>
+      <th>Codigo Proveedor</th>
+      <th>Nombre proveedor</th>
+      <th>Total KLS</th>
+      <th>Nro dias</th>
+      <th>Promedio KLS</th>
+      <th>%Variacion Leche</th>
+      <th>%Grasa</th>
+      <th>%Variacion grasa</th>
+      <th>%Solidos totales</th>
+      <th>%Variacion ST</th>
+      <th>Pago Leche</th>
+      <th>Pago Grasa</th>
+      <th>Pago ST</th>
+      <th>Bono</th>
+      <th>Dcto Leche</th>
+      <th>Dcto Grasa</th>
+      <th>Dcto ST</th>
+      <th>Pago total</th>
+      <th>Monto retencion</th>
+      <th>Monto final</th>
+      
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pagos:${pagos}">
+        <td th:text="${pagos.quincena}"></td>
+        <td th:text="${pagos.codigo_proveedor}"></td>
+        <td th:text="${pagos.nombre_proveedor}"></td>
+        <td th:text="${pagos.total_kls}"></td>
+        <td th:text="${pagos.dias}"></td>
+        <td th:text="${pagos.promedio_kls}"></td>
+        <td th:text="${pagos.variacion_leche}"></td>
+        <td th:text="${pagos.grasa}"></td>
+        <td th:text="${pagos.variacion_grasa}"></td>
+        <td th:text="${pagos.solidos_totales}"></td>
+        <td th:text="${pagos.variacion_st}"></td>
+        <td th:text="${pagos.pago_leche}"></td>
+        <td th:text="${pagos.pago_grasa}"></td>
+        <td th:text="${pagos.pago_st}"></td>
+        <td th:text="${pagos.bono}"></td>
+        <td th:text="${pagos.dcto_leche}"></td>
+        <td th:text="${pagos.dcto_grasa}"></td>
+        <td th:text="${pagos.dcto_st}"></td>
+        <td th:text="${pagos.total}"></td>
+        <td th:text="${pagos.monto_retencion}"></td>
+        <td th:text="${pagos.monto_final}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
