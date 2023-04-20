@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 @Data
 public class GrasaSolidoEntity {
     @Id
-    @NotNull
+    //@NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_gs;
     private String proveedor;

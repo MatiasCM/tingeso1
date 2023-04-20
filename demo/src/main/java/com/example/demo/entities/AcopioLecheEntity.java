@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 @Data
 public class AcopioLecheEntity {
     @Id
-    @NotNull
+    //@NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_acopio;
     private String fecha;

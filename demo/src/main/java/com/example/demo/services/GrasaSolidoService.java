@@ -104,8 +104,8 @@ public class GrasaSolidoService {
     }
 
     //obtener grasa de proveedor
-    public double obtenerGrasa(String proveedor){
-        return obtenerGSPorProveedor(proveedor).getGrasa();
+    public double obtenerGrasa(GrasaSolidoEntity gs){
+        return gs.getGrasa();
     }
 
     public double pagoPorGrasa(double grasa, double kilos){
@@ -118,8 +118,8 @@ public class GrasaSolidoService {
         }
     }
 
-    public double obtenerST(String proveedor){
-        return obtenerGSPorProveedor(proveedor).getSolido();
+    public double obtenerST(GrasaSolidoEntity st){
+        return st.getSolido();
     }
 
     public double pagoPorST(double st, double kilos){
