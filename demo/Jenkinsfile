@@ -1,0 +1,56 @@
+pipeline{
+    agent any
+    tools{
+        maven "maven"
+    }
+    stages{
+        stage("Build JAR File"){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/MatiasCM/tingeso1']])
+                dir("demo"){
+                    sh "mvn clean install"
+                }
+            }
+        }
+        stage("Test"){
+            steps{
+                dir("demo"){
+                    sh "mvn test"
+                }
+            }
+        }
+        stage("SonarQube Analysis"){
+            steps{
+                dir("demo"){
+                    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=pep1 -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_f66ae40ceaa58d2ce016f61819e2e4b83d2dd35b"
+                }
+            }
+        }
+        stage("Build Docker Image"){
+            steps{
+                dir("demo"){
+                    sh "docker build -t matiascm/tingeso1 ."
+                }
+            }
+        }
+        stage("Push Docker Image"){
+            steps{
+                dir("demo"){
+                    withCredentials([string(credentialsId: 'dckrhubpassword', variable: 'dckpass')]) {
+                        sh "docker login -u matiascm -p ${dckpass}"
+                    }
+                    sh "docker push matiascm/tingeso1"
+                    
+                }
+                
+            }
+        }
+    }
+    post{
+        always{
+            dir("demo"){
+                sh "docker logout"
+            }
+        }
+    }
+}
